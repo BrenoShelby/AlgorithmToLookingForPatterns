@@ -1,5 +1,15 @@
-#def last(padrao):
-    #em construção
+def last(padrao):
+    last = []
+
+    for i in range(0,256):
+        last.append(-1)
+    
+    ascii = [ord(c) for c in padrao]
+
+    for i, j in zip(ascii, range(0, len(padrao))):
+        last[i] = j
+    
+    return last
 
 def boyermoore(texto, padrao):
     last = last(padrao)
@@ -10,9 +20,9 @@ def boyermoore(texto, padrao):
     if(i > n - 1):
         return -1
     
-    j = m -1
+    j = m - 1
 
-    while(i <= n -1):
+    while(i <= n - 1):
         if(padrao[j] == texto[i]):
             if(j == 0):
                 return i
