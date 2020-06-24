@@ -20,7 +20,7 @@ padrao = input('Digite o padrão que deseja encontrar: ')
 
 with open(diretorio, 'r') as f:
     inicio = time.time()
-    print(bruteForce('Breno foi até a padaria, durante seu trajeto se deparou com seu amigo Lucas', 'até'))
+    print(bruteForce(f.read(), padrao))
     fim = time.time()
     print('Duração: %f' % (fim - inicio))
     
