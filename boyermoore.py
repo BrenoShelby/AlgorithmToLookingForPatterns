@@ -1,12 +1,13 @@
 import time
 
+'''Esse método tem como objetivo satisfazer a heurística do salto de caracteres. De maneira
+sucinta, define-se essa função como: se um C (caracter) está em P (padrão), f(c) é o índice
+da última ocorrência (mais à direita) de C em P. Senão, convenciona-se que f(c) = -1. A definição
+pode parecer díficil, mas na prática não é.
+'''
 def buildLastFunction(padrao):
-    '''Criando um arranjo'''
-    last = []
-
     '''Inicializando o arranjo com o valor convencional sendo -1'''
-    for i in range(0,256):
-        last.append(-1)
+    last = [-1] * 256
     
     '''Convertendo os caracteres da string padrao para ASCII'''
     ascii = {ord(c) for c in padrao}
@@ -24,22 +25,22 @@ def buildLastFunction(padrao):
     return last #retorna o arranjo
 
 '''' Versão simplificada do algoritmo Boyer-Moore(BM), que usa apenas as
-heurísticas do espelho e do salto de caracteres.
-@return Índice do começo da ocorrência mais à esquerda do texto igual ao
-padrão, ou -1 se não há tal ocorrência.
+heurísticas do espelho e do salto de caracteres. Índice do começo da ocorrência mais à 
+esquerda do texto igual ao padrão, ou -1 se não há tal ocorrência.
+OBS: O algoritmo é sensível a letras mínusculas ou maísculas.
 '''
 def boyermoore(texto, padrao):
-    last = buildLastFunction(padrao)
-    n = len(texto)
-    m = len(padrao)
-    i = m - 1
+    last = buildLastFunction(padrao) #calcula a função last
+    n = len(texto) #tamanho do texto
+    m = len(padrao) #tamanho do padrao 
+    i = m - 1 #indice
 
     if(i > n - 1):
         return "O padrão precisa ser menor do que o texto" 
-    
-    j = m - 1
 
-    while(i <= n - 1): # 2 <= 7
+    j = m - 1 #indice
+
+    while(i <= n - 1):
         if(padrao[j] == texto[i]):
             if(j == 0):
                 return "Padrão encontrado" 
